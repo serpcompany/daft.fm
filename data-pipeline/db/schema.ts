@@ -12,7 +12,18 @@ export const artists = sqliteTable('artists', {
   genres: text('genres'), // JSON array
   members: text('members'), // JSON array (temporary)
   bio: text('bio'),
+  bioSummary: text('bio_summary'),
   images: text('images'), // JSON array
+  enrichedGenres: text('enriched_genres'), // JSON array - combined from all sources
+  
+  // Stats from enrichment
+  spotifyPopularity: integer('spotify_popularity'), // 0-100 from Spotify
+  lastfmListeners: integer('lastfm_listeners'), // from Last.fm
+  lastfmPlaycount: integer('lastfm_playcount'), // from Last.fm
+  
+  // Track data sources
+  dataSourcesUsed: text('data_sources_used'), // JSON array
+  lastEnriched: integer('last_enriched', { mode: 'timestamp' }),
   
   // Entity resolution IDs
   musicbrainzId: text('musicbrainz_id').unique(),
