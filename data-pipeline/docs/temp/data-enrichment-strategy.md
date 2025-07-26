@@ -8,32 +8,34 @@ After collecting base data from MusicBrainz, we need to enrich it with additiona
 
 ### 1. Artist Biography
 **Sources:**
-- **Last.fm API** - Best option, has rich bios
+- **Wikipedia** - Good content but not for smaller artists
+  - MusicBrainz displays part of Wikipedia on their UI
+  - Via Wikidata ID we already have
+- **Last.fm** - Has a lot of content
+  - Example: https://www.last.fm/music/Daft+Punk/+wiki
   - Endpoint: `artist.getInfo`
-  - Requires: Artist name or MusicBrainz ID
   - Returns: Biography content, summary
-- **Wikipedia API** - Via Wikidata ID
-  - Can fetch full article extract
-  - More detailed but requires parsing
 
 ### 2. Artist Images
 **Sources:**
-- **Spotify Web API** - High quality artist photos
-  - Endpoint: `/artists/{id}`
-  - Requires: Spotify artist ID (we have this!)
-  - Returns: Multiple image sizes
-- **Last.fm API** - Album artwork and artist images
-  - Returns: Various image sizes
-- **Discogs API** - Artist photos
+- **MusicBrainz** - Has cover art for releases (via https://coverartarchive.org/) but no real artist images
+- **Discogs** - Lots of great artist images
+  - Example: https://www.discogs.com/artist/1289-Daft-Punk/images
   - Requires: Discogs artist ID (we have this!)
+- **Last.fm** - Lots of great images
+  - Example: https://www.last.fm/music/Daft+Punk/+images
+  - Returns: Various image sizes
+- **Wikimedia Commons** - Lots of images with search filters (like image size)
+  - Example: https://commons.wikimedia.org/w/index.php?search=daft+punk
+  - Can search using artist name
 
-### 3. Additional Streaming IDs
+### 3. Additional Unique Identifiers
 **Sources:**
-- **Spotify Web API** 
-  - Can search by artist name to get Apple Music, Tidal links
-- **MusicBrainz** 
-  - These are sometimes in relationships but not always
-  - AllMusic, VIAF, Deezer occasionally appear
+- **Wikidata** - We have the Wikidata ID from MusicBrainz
+  - Contains HUNDREDS of other unique identifiers
+  - Example: https://www.wikidata.org/wiki/Q185828 (Daft Punk)
+  - Can get: Apple Music ID, Deezer ID, Tidal ID, VIAF ID, AllMusic ID, and many more
+  - Query Wikidata using our existing Wikidata ID or MusicBrainz ID
 
 ## Implementation Plan
 
