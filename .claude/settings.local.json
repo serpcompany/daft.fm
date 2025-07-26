@@ -16,7 +16,8 @@
       "Bash(npx wrangler d1 execute:*)",
       "Bash(touch:*)",
       "Bash(npm run dev:*)",
-      "WebFetch(domain:nuxtseo.com)"
+      "WebFetch(domain:nuxtseo.com)",
+      "WebFetch(domain:musicbrainz.org)"
     ],
     "deny": []
   }

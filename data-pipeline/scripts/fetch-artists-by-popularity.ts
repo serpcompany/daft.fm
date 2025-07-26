@@ -48,7 +48,10 @@ function extractExternalIds(relations: any[]): Record<string, string> {
   if (!relations) return externalIds;
   
   for (const relation of relations) {
-    if (relation.url?.resource) {
+    // Check for specific relation types first
+    if (relation.type === 'wikidata' && relation.url?.resource) {
+      externalIds.wikidataEntityId = relation.url.resource.split('wikidata.org/wiki/')[1];
+    } else if (relation.url?.resource) {
       const url = relation.url.resource;
       
       if (url.includes('spotify.com/artist/')) {
@@ -58,8 +61,6 @@ function extractExternalIds(relations: any[]): Record<string, string> {
         externalIds.discogsArtistId = `[a${artistId}]`;  // Format as [a82730]
       } else if (url.includes('genius.com/artists/')) {
         externalIds.geniusArtistId = url.split('genius.com/artists/')[1];
-      } else if (url.includes('wikidata.org/wiki/')) {
-        externalIds.wikidataEntityId = url.split('wikidata.org/wiki/')[1];
       } else if (url.includes('last.fm/music/')) {
         externalIds.lastfmUrl = url;
       } else if (url.includes('youtube.com/channel/')) {
