@@ -1,7 +1,7 @@
 <template>
   <UContainer class="py-8">
     <div class="mb-12 text-center">
-      <h1 class="text-5xl font-bold mb-4">Welcome to Daft.fm</h1>
+      <h1 class="text-5xl font-bold mb-4">Welcome to DAFT FM</h1>
       <p class="text-xl text-gray-600">Explore our comprehensive music database</p>
     </div>
 
