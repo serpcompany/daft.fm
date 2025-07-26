@@ -30,23 +30,47 @@ See the `.env` file for the API keys we have. There are other APIs that we can a
 | Field | Description | Source API | Endpoint/Method | Notes | Retrieved |
 |-------|-------------|------------|-----------------|-------|-----------|
 | **Core Fields** |
-| name | Artist or band name | | | | ☐ |
+| name | Artist or band name | MusicBrainz | /artist/{mbid} | | ✓ |
 | slug | URL-friendly identifier | | | | ☐ |
 | urlSlug | Alternative URL slug | | | | ☐ |
-| country | Country of origin | | | | ☐ |
-| formedYear | Year formed | | | | ☐ |
-| genres | JSON array of genres | | | | ☐ |
-| members | JSON array of member names | | | | ☐ |
-| bio | Artist biography | | | | ☐ |
-| images | JSON array of image URLs | | | | ☐ |
+| country | Country of origin | MusicBrainz | /artist/{mbid} | ISO code | ✓ |
+| formedYear | Year formed | MusicBrainz | /artist/{mbid} | From life-span.begin | ✓ |
+| genres | JSON array of genres | MusicBrainz | /artist/{mbid}?inc=tags | | ✓ |
+| members | JSON array of member names | MusicBrainz | /artist/{mbid}?inc=artist-rels | See artist_members table | ✓ |
+| bio | Artist biography | Last.fm / Wikipedia | | Need separate API call | ☐ |
+| images | JSON array of image URLs | Spotify / Last.fm | | Need separate API call | ☐ |
 | **Entity Resolution** |
-| musicbrainzArtistId | MusicBrainz artist MBID | | | | ☐ |
-| wikidataEntityId | Wikidata Q-identifier | | | | ☐ |
-| discogsArtistId | Discogs artist ID | | | | ☐ |
-| spotifyArtistId | Spotify artist ID | | | | ☐ |
-| lastfmUrl | Last.fm profile URL | | | | ☐ |
-| isni | International Standard Name Identifier | | | | ☐ |
-| externalIds | JSON object for additional IDs | | | | ☐ |
+| musicbrainzArtistId | MusicBrainz artist MBID | MusicBrainz | /artist/{mbid} | | ✓ |
+| wikidataEntityId | Wikidata Q-identifier | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
+| discogsArtistId | Discogs artist ID | MusicBrainz | /artist/{mbid}?inc=url-rels | Format: [a12345] | ✓ |
+| spotifyArtistId | Spotify artist ID | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
+| lastfmUrl | Last.fm profile URL | MusicBrainz | /artist/{mbid}?inc=url-rels | Full URL | ✓ |
+| isni | International Standard Name Identifier | MusicBrainz | /artist/{mbid} | | ✓ |
+| externalIds | JSON object for additional IDs | MusicBrainz | /artist/{mbid}?inc=url-rels | Multiple sources | ✓ |
+| **Social Media** |
+| twitter | Twitter handle | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
+| instagram | Instagram handle | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
+| facebook | Facebook page | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
+| youtubeChannelId | YouTube channel ID | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
+| **Additional IDs** |
+| geniusArtistId | Genius.com artist ID | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
+| allMusicId | AllMusic artist ID | MusicBrainz | /artist/{mbid}?inc=url-rels | Sometimes available | ☐ |
+| viafId | VIAF ID | MusicBrainz | /artist/{mbid}?inc=url-rels | Sometimes available | ☐ |
+| appleMusicId | Apple Music ID | MusicBrainz | /artist/{mbid}?inc=url-rels | Rarely in relationships | ☐ |
+| tidalArtistId | Tidal artist ID | MusicBrainz | /artist/{mbid}?inc=url-rels | Rarely in relationships | ☐ |
+| deezerArtistId | Deezer artist ID | MusicBrainz | /artist/{mbid}?inc=url-rels | Sometimes available | ☐ |
+
+## Artist Members Table
+
+| Field | Description | Source API | Endpoint/Method | Notes | Retrieved |
+|-------|-------------|------------|-----------------|-------|-----------|
+| artistId | Foreign key to artists table | | | | ✓ |
+| memberName | Member's name | MusicBrainz | /artist/{mbid}?inc=artist-rels | | ✓ |
+| memberMbid | Member's MusicBrainz ID | MusicBrainz | /artist/{mbid}?inc=artist-rels | | ✓ |
+| instruments | Instruments played | MusicBrainz | /artist/{mbid}?inc=artist-rels | From attributes | ✓ |
+| beginDate | When member joined | MusicBrainz | /artist/{mbid}?inc=artist-rels | | ✓ |
+| endDate | When member left | MusicBrainz | /artist/{mbid}?inc=artist-rels | | ✓ |
+| isOriginalMember | Original member flag | MusicBrainz | /artist/{mbid}?inc=artist-rels | From attributes | ✓ |
 
 ## Albums Table
 
