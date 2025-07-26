@@ -27,6 +27,7 @@
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.58",
     "@vitest/ui": "^3.2.4",
     "drizzle-kit": "^0.31.4",
     "nitro-cloudflare-dev": "^0.2.2",
