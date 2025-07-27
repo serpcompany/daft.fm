@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 
-import { stagingDb } from './staging-db';
+import { stagingDb } from '../utils/staging-db';
 import { artists } from '../db/schema';
 import { enrichArtist } from './enrich-orchestrator';
 import { eq } from 'drizzle-orm';

@@ -1,6 +1,6 @@
 #!/usr/bin/env tsx
 
-import { stagingDb } from './staging-db';
+import { stagingDb } from '../utils/staging-db';
 import { artists } from '../db/schema';
 
 async function checkMissingStreamingIds() {

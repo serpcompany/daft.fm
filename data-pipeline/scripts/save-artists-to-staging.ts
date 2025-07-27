@@ -1,7 +1,7 @@
 #!/usr/bin/env tsx
 
 import { fetchArtistsByPopularity } from './fetch-artists-by-popularity';
-import { stagingDb, initStagingDb } from './staging-db';
+import { stagingDb, initStagingDb } from './utils/staging-db';
 import { artists, artistMembers } from '../db/schema';
 import { createSlug } from '../../server/lib/musicbrainz';
 import { eq } from 'drizzle-orm';
