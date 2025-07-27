@@ -6,17 +6,22 @@
     "fetch-artists": "tsx scripts/fetch-artists-by-popularity.ts",
     "save-artists": "tsx scripts/save-artists-to-staging.ts",
     "check-missing": "tsx scripts/check-missing-streaming-ids.ts",
-    "explore-apis": "tsx scripts/explore-enrichment-apis.ts"
+    "explore-apis": "tsx scripts/explore-enrichment-apis.ts",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@types/pg": "^8.15.4",
     "better-sqlite3": "^11.7.0",
+    "csv-parse": "^6.1.0",
+    "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.3",
-    "tsx": "^4.20.3",
-    "dotenv": "^16.5.0"
+    "pg": "^8.16.3",
+    "tsx": "^4.20.3"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.12.0",
+    "axios": "^1.11.0",
     "drizzle-kit": "^0.31.4"
   }
 }
