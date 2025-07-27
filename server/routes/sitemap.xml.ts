@@ -1,5 +1,5 @@
-import { createDb } from '../database/db'
-import { artists, albums, songs } from '../database/schema'
+import { createDb } from '../db/'
+import { artists, albums, songs } from '../db/schema'
 import { eq } from 'drizzle-orm'
 
 export default defineEventHandler(async (event) => {

@@ -24,3 +24,5 @@ logs
 !.env.example
 
 .claude/reference
+*.db 
+musicbrainz-dumps

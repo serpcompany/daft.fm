@@ -17,7 +17,9 @@
       "Bash(touch:*)",
       "Bash(npm run dev:*)",
       "WebFetch(domain:nuxtseo.com)",
-      "WebFetch(domain:musicbrainz.org)"
+      "WebFetch(domain:musicbrainz.org)",
+      "Bash(sqlite3:*)",
+      "WebFetch(domain:www.discogs.com)"
     ],
     "deny": []
   }
