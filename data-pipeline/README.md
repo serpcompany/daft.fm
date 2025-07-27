@@ -37,8 +37,8 @@ See the `.env` file for the API keys we have. There are other APIs that we can a
 | formedYear | Year formed | MusicBrainz | /artist/{mbid} | From life-span.begin | ✓ |
 | genres | JSON array of genres | MusicBrainz | /artist/{mbid}?inc=tags | | ✓ |
 | members | JSON array of member names | MusicBrainz | /artist/{mbid}?inc=artist-rels | See artist_members table | ✓ |
-| bio | Artist biography | Last.fm / Wikipedia | | Need separate API call | ☐ |
-| images | JSON array of image URLs | Spotify / Last.fm | | Need separate API call | ☐ |
+| bio | Artist biography | Discogs | /artists/{id} | 100% of artists with Discogs ID | ✓ |
+| images | JSON array of image URLs | Discogs | /artists/{id} | 100% of artists with Discogs ID | ✓ |
 | **Entity Resolution** |
 | musicbrainzArtistId | MusicBrainz artist MBID | MusicBrainz | /artist/{mbid} | | ✓ |
 | wikidataEntityId | Wikidata Q-identifier | MusicBrainz | /artist/{mbid}?inc=url-rels | From relationships | ✓ |
@@ -77,22 +77,22 @@ See the `.env` file for the API keys we have. There are other APIs that we can a
 | Field | Description | Source API | Endpoint/Method | Notes | Retrieved |
 |-------|-------------|------------|-----------------|-------|-----------|
 | **Core Fields** |
-| title | Album title | | | | ☐ |
-| slug | URL-friendly identifier | | | | ☐ |
-| artistId | Foreign key to artists table | | | | ☐ |
-| releaseDate | Album release date | | | | ☐ |
-| trackCount | Number of tracks | | | | ☐ |
-| genres | JSON array of genres | | | | ☐ |
-| coverArt | JSON array of cover art URLs | | | | ☐ |
-| credits | JSON object of album credits | | | | ☐ |
+| title | Album title | Spotify | /v1/artists/{id}/albums | | ✓ |
+| slug | URL-friendly identifier | Generated | | | ✓ |
+| artistId | Foreign key to artists table | | | | ✓ |
+| releaseDate | Album release date | Spotify | /v1/artists/{id}/albums | Year only | ✓ |
+| trackCount | Number of tracks | Spotify | /v1/artists/{id}/albums | | ✓ |
+| genres | JSON array of genres | Discogs | /releases/{id} | 50% enriched | Partial |
+| coverArt | JSON array of cover art URLs | Spotify | /v1/artists/{id}/albums | Single URL | ✓ |
+| credits | JSON object of album credits | Discogs | /releases/{id} | 48% enriched | Partial |
 | **Entity Resolution** |
 | musicbrainzReleaseId | MusicBrainz release MBID | | | | ☐ |
 | wikidataEntityId | Wikidata Q-identifier | | | | ☐ |
 | discogsMasterId | Discogs master release ID | | | | ☐ |
-| discogsReleaseId | Discogs release ID | | | | ☐ |
-| spotifyAlbumId | Spotify album ID | | | | ☐ |
-| barcode | Album barcode | | | | ☐ |
-| catalogNumber | Record label catalog number | | | | ☐ |
+| discogsReleaseId | Discogs release ID | Discogs | /search + /releases/{id} | 50% enriched | Partial |
+| spotifyAlbumId | Spotify album ID | Spotify | /v1/artists/{id}/albums | | ✓ |
+| barcode | Album barcode | Discogs | /releases/{id} | 50% enriched | Partial |
+| catalogNumber | Record label catalog number | Discogs | /releases/{id} | 50% enriched | Partial |
 | externalIds | JSON object for additional IDs | | | | ☐ |
 
 
@@ -101,20 +101,25 @@ See the `.env` file for the API keys we have. There are other APIs that we can a
 | Field | Description | Source API | Endpoint/Method | Notes | Retrieved |
 |-------|-------------|------------|-----------------|-------|-----------|
 | **Core Fields** |
-| title | Song title | | | | ☐ |
-| slug | URL-friendly identifier | | | | ☐ |
-| duration | Duration in seconds | | | | ☐ |
-| artistId | Foreign key to artists table | | | | ☐ |
-| albumId | Foreign key to albums table | | | | ☐ |
+| title | Song title | Spotify | /v1/albums/{id}/tracks | | ✓ |
+| slug | URL-friendly identifier | Generated | | | ✓ |
+| duration | Duration in seconds | Spotify | /v1/albums/{id}/tracks | | ✓ |
+| trackNumber | Track position on album | Spotify | /v1/albums/{id}/tracks | | ✓ |
+| discNumber | Disc number | Spotify | /v1/albums/{id}/tracks | | ✓ |
+| explicit | Explicit content flag | Spotify | /v1/albums/{id}/tracks | | ✓ |
+| popularity | Popularity score 0-100 | Spotify | /v1/tracks/{id} | | ✓ |
+| previewUrl | 30-second preview URL | Spotify | /v1/albums/{id}/tracks | | ✓ |
+| artistId | Foreign key to artists table | | | | ✓ |
+| albumId | Foreign key to albums table | | | | ✓ |
 | releaseDate | Song release date | | | | ☐ |
 | lyrics | Song lyrics text | | | | ☐ |
 | annotations | Lyrics annotations | | | | ☐ |
 | credits | JSON object of song credits | | | | ☐ |
 | **Entity Resolution** |
-| musicbrainzRecordingId | MusicBrainz recording MBID | | | | ☐ |
+| musicbrainzRecordingId | MusicBrainz recording MBID | MusicBrainz | /recording?query= | 6% matched | Partial |
 | wikidataEntityId | Wikidata Q-identifier | | | | ☐ |
-| isrc | International Standard Recording Code | | | | ☐ |
-| spotifyTrackId | Spotify track ID | | | | ☐ |
+| isrc | International Standard Recording Code | Spotify | /v1/albums/{id}/tracks | Some tracks | Partial |
+| spotifyTrackId | Spotify track ID | Spotify | /v1/albums/{id}/tracks | | ✓ |
 | geniusSongId | Genius.com song ID | | | | ☐ |
 | acoustid | AcoustID fingerprint | | | | ☐ |
 | externalIds | JSON object for additional IDs | | | | ☐ |

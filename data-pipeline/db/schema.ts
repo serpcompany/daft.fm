@@ -78,6 +78,11 @@ export const songs = sqliteTable('songs', {
   title: text('title').notNull(),
   slug: text('slug').notNull(),
   duration: integer('duration'), // seconds
+  trackNumber: integer('track_number'),
+  discNumber: integer('disc_number'),
+  explicit: integer('explicit', { mode: 'boolean' }),
+  popularity: integer('popularity'), // 0-100 from Spotify
+  previewUrl: text('preview_url'),
   artistId: integer('artist_id').notNull().references(() => artists.id),
   albumId: integer('album_id').references(() => albums.id),
   releaseDate: integer('release_date', { mode: 'timestamp' }),
