@@ -1,7 +1,7 @@
 // GET /api/artists/[slug] - Get artist details with albums and songs
 
 import { getArtistBySlug, getArtistAlbums, getArtistSongs } from '../../lib/queries'
-import { createDb } from '../../db/db'
+import { createDb } from '../../db'
 import { eq } from 'drizzle-orm'
 import { albums } from '../../db/schema'
 

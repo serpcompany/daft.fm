@@ -16,7 +16,7 @@ vi.mock('../../lib/queries', () => ({
 }))
 
 // Mock createDb
-vi.mock('../../database/db', () => ({
+vi.mock('../../db', () => ({
   createDb: vi.fn(() => ({}))
 }))
 

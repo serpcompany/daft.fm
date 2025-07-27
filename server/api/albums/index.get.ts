@@ -1,7 +1,7 @@
 // GET /api/albums - List albums with pagination, search, and filtering
 
 import { getAlbums, getAlbumsWithArtists, searchAlbums, getAlbumsByArtist } from '../../lib/queries'
-import { createDb } from '../../db/db'
+import { createDb } from '../../db'
 import { albumListResponseSchema } from '../../types/schemas'
 
 export default defineEventHandler(async (event) => {

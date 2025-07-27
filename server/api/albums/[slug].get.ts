@@ -1,7 +1,7 @@
 // GET /api/albums/[slug] - Get album by compound slug
 // URL format: /api/albums/artist-slug-album-slug
 
-import { createDb } from '../../db/db'
+import { createDb } from '../../db'
 import { and, eq } from 'drizzle-orm'
 import { albums, artists, songs } from '../../db/schema'
 

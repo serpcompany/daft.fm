@@ -1,6 +1,6 @@
 // Database seeding script for development
-import { createDb } from '../server/database/db';
-import { artists, albums, songs } from '../server/database/schema';
+import { createDb } from '../server/db';
+import { artists, albums, songs } from '../server/db/schema';
 import { insertArtistSchema, insertAlbumSchema, insertSongSchema } from '../server/types';
 import { getArtist, getArtistReleaseGroups, getArtistRecordings, createSlug } from '../server/lib/musicbrainz';
 

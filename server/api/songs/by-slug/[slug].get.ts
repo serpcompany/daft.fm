@@ -1,7 +1,7 @@
 // GET /api/songs/by-slug/[slug] - Get a song by full compound slug
 
-import { createDb } from '../../../database/db'
-import { songs, artists, albums } from '../../../database/schema'
+import { createDb } from '../../../db'
+import { songs, artists, albums } from '../../../db/schema'
 import { eq, and, sql } from 'drizzle-orm'
 
 export default defineEventHandler(async (event) => {
