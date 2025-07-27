@@ -1,7 +1,7 @@
 // GET /api/artists - List all artists with pagination and search
 
 import { getArtists, searchArtists } from '../../lib/queries'
-import { createDb } from '../../database/db'
+import { createDb } from '../../db/db'
 import { artistListResponseSchema } from '../../types/schemas'
 
 export default defineEventHandler(async (event) => {

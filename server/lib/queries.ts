@@ -1,7 +1,7 @@
 // Database query utilities for daft.fm
 import { eq, desc, asc, like } from 'drizzle-orm';
-import { createDb, type Database } from '../database/db';
-import { artists, albums, songs } from '../database/schema';
+import { createDb, type Database } from '../db/db';
+import { artists, albums, songs } from '../db/schema';
 import type { Artist, Album, Song, AlbumWithArtist, SongWithDetails, ArtistWithStats } from '../types';
 import { isValidMbid } from './urls';
 

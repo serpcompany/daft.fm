@@ -1,7 +1,7 @@
 // GET /api/songs - List songs with pagination, search, and filtering  
 
 import { getSongs, getSongsWithArtists, searchSongs, getSongsByArtist, getSongsByAlbum } from '../../lib/queries'
-import { createDb } from '../../database/db'
+import { createDb } from '../../db/db'
 import { songListResponseSchema, songWithDetailsSchema } from '../../types/schemas'
 
 export default defineEventHandler(async (event) => {

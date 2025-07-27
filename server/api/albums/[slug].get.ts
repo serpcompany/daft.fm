@@ -1,9 +1,9 @@
 // GET /api/albums/[slug] - Get album by compound slug
 // URL format: /api/albums/artist-slug-album-slug
 
-import { createDb } from '../../database/db'
+import { createDb } from '../../db/db'
 import { and, eq } from 'drizzle-orm'
-import { albums, artists, songs } from '../../database/schema'
+import { albums, artists, songs } from '../../db/schema'
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')

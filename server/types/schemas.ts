@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { artists, albums, songs } from '../database/schema'
+import { artists, albums, songs } from '../db/schema'
 
 // Transform date strings to Date objects or keep as strings
 const dateTransform = z.union([

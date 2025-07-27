@@ -1,9 +1,9 @@
 // GET /api/artists/[slug] - Get artist details with albums and songs
 
 import { getArtistBySlug, getArtistAlbums, getArtistSongs } from '../../lib/queries'
-import { createDb } from '../../database/db'
+import { createDb } from '../../db/db'
 import { eq } from 'drizzle-orm'
-import { albums } from '../../database/schema'
+import { albums } from '../../db/schema'
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')

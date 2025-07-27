@@ -7,7 +7,7 @@ import { artistSchema, albumSchema, songSchema } from './schemas';
 
 // Insert and Update schemas
 import { createInsertSchema } from 'drizzle-zod';
-import { artists, albums, songs } from '../database/schema';
+import { artists, albums, songs } from '../db/schema';
 
 export const insertArtistSchema = createInsertSchema(artists);
 export const updateArtistSchema = insertArtistSchema.partial();
