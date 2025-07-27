@@ -2,7 +2,81 @@
 
 ## Overview
 
-After collecting base data from MusicBrainz, we need to enrich it with additional information from other APIs.
+Our data enrichment pipeline fetches and combines data from multiple APIs to build a comprehensive music database.
+
+## Current Data Flow (What We Actually Have)
+
+```
+┌─────────────┐     
+│   SPOTIFY   │     
+│             │     
+│ • Albums    │────▶ ┌──────────────┐
+│   (clean)   │      │   STAGING    │
+└─────────────┘      │   DATABASE   │
+                     │              │
+                     │ • Artists    │
+                     │ • Albums     │
+                     │ • (No songs) │
+                     └──────────────┘
+```
+
+### What We're Actually Fetching
+
+```
+1. SPOTIFY ALBUMS (Implemented ✅)
+   └─→ Using album_type=album filter
+       ├─→ Album title
+       ├─→ Release date (year)
+       ├─→ Track count
+       ├─→ Cover art URL
+       └─→ Spotify album ID
+
+2. BASIC ARTIST DATA (Partial ✅)
+   └─→ Created when fetching albums
+       ├─→ Artist name
+       ├─→ Spotify artist ID
+       └─→ Generated slug
+```
+
+## Next Steps (Not Yet Implemented)
+
+1. **Spotify Artist Details** → Get genres, images, popularity
+2. **Spotify Tracks** → Get all tracks for each album
+3. **MusicBrainz Artist Data** → Rich metadata including:
+   - Founded date & location (e.g., "1993 in Paris, France")
+   - Dissolved date (if applicable)
+   - Area/Country
+   - Genre tags
+   - External IDs (ISNI, IPI, social links via relationships)
+4. **Additional Sources** → Last.fm bio, Genius lyrics, etc.
+
+## Current Implementation Status
+
+### ✅ What's Working:
+- Spotify album fetching with `album_type=album` filter
+- Basic artist records (name, Spotify ID, slug)
+- Album data (title, release year, track count, cover art)
+- Staging database schema created
+
+### ❌ What's Missing:
+- Artist details (genres, images, bio, popularity)
+- Songs/tracks for each album
+- All enrichment sources (MusicBrainz, Last.fm, etc.)
+- Entity resolution between different ID systems
+
+## Available Data from MusicBrainz
+
+### Artist Data (via API):
+- **Basic Info**: Name, type (person/group), disambiguation
+- **Dates**: Founded/born, dissolved/died dates
+- **Location**: Area (country/city), founding location
+- **Genres**: Community-voted genre tags
+- **Identifiers**: ISNI, IPI, MusicBrainz ID
+- **External Links** (via url-rels):
+  - **Streaming**: Spotify, Apple Music, Deezer, Tidal, etc.
+  - **Social**: Facebook, Instagram, Twitter, YouTube
+  - **Databases**: Discogs, AllMusic, Last.fm, Genius
+  - **Official**: Artist website, Wikipedia, Wikidata
 
 ## Missing Data & Sources
 

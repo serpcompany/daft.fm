@@ -27,13 +27,13 @@
          ▼
 ┌─────────────────┐     ┌──────────────┐
 │ For Each Artist │────▶│ Get Albums   │
-│                 │     │ (Canonical)  │
+│                 │     │ (Spotify API)│
 └────────┬────────┘     └──────────────┘
          │
          ▼
 ┌─────────────────┐     ┌──────────────┐
 │ For Each Album  │────▶│ Get Songs    │
-│                 │     │              │
+│                 │     │ (Spotify API)│
 └────────┬────────┘     └──────────────┘
          │
          ▼
@@ -60,11 +60,13 @@
 
 1. **Artist Discovery** - Query MusicBrainz for popular artists
 2. **Data Extraction** - Parse relationships, members, external IDs
-3. **Album Collection** - Get canonical releases per artist
-4. **Song Collection** - Get tracks per album
+3. **Album Collection** - Get canonical albums from Spotify API
+4. **Song Collection** - Get tracks from Spotify API
 5. **Enrichment** - Fill gaps with other APIs
 6. **Storage** - Save to staging database
 
 ## Current Status
-- ✅ Steps 1-2 complete
-- 🔄 Steps 3-6 pending
+- ✅ Step 1-2: MusicBrainz artist discovery complete
+- ✅ Step 3: Spotify album fetching implemented
+- 🔄 Step 4: Song collection pending
+- 🔄 Step 5-6: Enrichment & final storage pending
